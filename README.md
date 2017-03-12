@@ -1,6 +1,6 @@
 # Compressed Sensing using Generative Models
 
-This repository provides code to reproduce results from the paper: [Compressed Sensing from Generative Models](https://arxiv.org/abs/1703.03208)
+This repository provides code to reproduce results from the paper: [Compressed Sensing using Generative Models](https://arxiv.org/abs/1703.03208)
 
 ### Steps to reproduce the results:
 ---
