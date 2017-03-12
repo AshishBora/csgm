@@ -1,0 +1,6 @@
+*.DS_Store
+models/*
+
+data/*
+*.pyc
+*.ipynb_checkpoints*
