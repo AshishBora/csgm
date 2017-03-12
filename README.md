@@ -1,12 +1,11 @@
 # Compressed Sensing using Generative Models
 
-This repository provides code to reproduce results from [Put arXiv link here.]
+This repository provides code to reproduce results from the paper: [Compressed Sensing from Generative Models](https://arxiv.org/abs/1703.03208)
 
-
-#### Steps to reproduce the results:
+### Steps to reproduce the results:
 ---
 
-###### Preliminaries
+#### Preliminaries
 ---
 
 Download the datasets
@@ -15,22 +14,21 @@ $ python download.py mnist
 $ python download.py celebA
 ```
 
-Make a new folder ```data/celeA_test``` and put some images in that folder. These images will be used for testing the algorithms.
+Make a new folder ```data/celebA_test``` and put some images in that folder. These images will be used for testing the algorithms.
 
 Download pretrained models from <https://drive.google.com/open?id=0B0ox77cWXKmLLUhtWEt3RGdpczg> and put them in ```models/```
 
 To use wavelet based estimators, you need to run ```$ python ./src/wavelet_basis.py``` to create the wavelet basis matrix.
 
 
-###### Experiments
+#### Experiments
 ---
 These are the supported experiments:
 
-1. Reconstruction : From Gaussian measurements
+1. Reconstruction from Gaussian measurements
 2. Super-resolution
-3. Inpainting
-4. Sensing Images from the span of the generator (gen-span)
-5. Quantifying representation error (projection)
+3. Sensing Images from the span of the generator (gen-span)
+4. Quantifying representation error (projection)
 
 To quickly see the reconstructions, use the ```src/test_{dataset}_{model_type}.sh``` files.
 
@@ -44,6 +42,4 @@ To reproduce the quantitative results, you have to run a lot of scripts. To make
 
 4. To start running these scripts, you can run ```$ ./utils/run_sequentially.sh``` to run them one by one. Alternatively use ```$ ./utils/run_all_by_number.sh``` to create screens and start proccessing them in parallel. [WARNING: This may overwhelm the computer.] You can use ```$ ./utils/stop_all_by_number.sh``` to stop the running processes started this way. 
 
-This will run the experiments with all the parameter settings and save the results to appropriately named directories.
-
-Once this is done, to get the plots, head over to ```src/metrics.ipynb```. To view reconstructed images, you can either find them in ```estimated/``` or to get the matrix of images (as in the paper), see ```src/view_est_{dataset}.ipynb```.
+This will run the experiments with all the parameter settings and save the results to appropriately named directories. Once this is done, to get the plots, head over to ```src/metrics.ipynb```. To view reconstructed images, you can either find them in ```estimated/``` or to get the matrix of images (as in the paper), see ```src/view_est_{dataset}.ipynb```.
