@@ -15,7 +15,7 @@ $ python download.py mnist
 $ python download.py celebA
 ```
 
-Make a new folder ```data/celeA_test``` and put some images in that folder. These images will be used for testing the algorithms.
+Make a new folder ```data/celeAtest``` and put some images in that folder. These images will be used for testing the algorithms.
 
 Download pretrained models from <https://drive.google.com/open?id=0B0ox77cWXKmLLUhtWEt3RGdpczg> and put them in ```models/```
 

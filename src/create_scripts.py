@@ -7,10 +7,8 @@ import itertools
 from argparse import ArgumentParser
 import utils
 
-
 BASE_SCRIPT = [
-    "cd src",
-    "python -u compressed_sensing.py \\",
+    "python -u ./src/compressed_sensing.py \\",
     "    --dataset celebA \\",
     "    --input-type full-input \\",
     "    --num-input-images 64 \\",

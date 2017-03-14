@@ -101,6 +101,7 @@ if __name__ == '__main__':
     # Input
     PARSER.add_argument('--dataset', type=str, default='celebA', help='Dataset to use')
     PARSER.add_argument('--input-type', type=str, default='random_test', help='Where to take input from')
+    PARSER.add_argument('--input-path-pattern', type=str, default='./data/celebAtest/*.jpg', help='Pattern to match to get images')
     PARSER.add_argument('--num-input-images', type=int, default=10, help='number of input images')
     PARSER.add_argument('--batch-size', type=int, default=64, help='How many examples are processed together')
 

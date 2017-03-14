@@ -1,24 +1,24 @@
-python -u compressed_sensing.py \
+python -u ./src/compressed_sensing.py \
     --dataset celebA \
     --input-type full-input \
-    --num-input-images 64 \
-    --batch-size 64 \
+    --input-path-pattern "$1" \
+    --num-input-images 1 \
+    --batch-size 1 \
     \
-    --measurement-type gaussian \
-    --noise-std 0.01 \
-    --num-measurements 50 \
+    --measurement-type project \
+    --noise-std 0.0 \
     \
     --model-types dcgan \
     --mloss1_weight 0.0 \
     --mloss2_weight 1.0 \
-    --zprior_weight 0.001 \
+    --zprior_weight 0.0 \
     --dloss1_weight 0.0 \
     --dloss2_weight 0.0 \
     \
     --optimizer-type adam \
     --learning-rate 0.1 \
     --momentum 0.9 \
-    --max-update-iter 2 \
+    --max-update-iter 1000 \
     --num-random-restarts 2 \
     \
     --not-lazy \

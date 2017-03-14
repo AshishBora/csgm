@@ -1,6 +1,5 @@
 # BASE_SCRIPT = [
-#     "cd src",
-#     "python -u compressed_sensing.py \\",
+#     "python -u ./src/compressed_sensing.py \\",
 #     "    --dataset celebA \\",
 #     "    --input-type full-input \\",
 #     "    --num-input-images 64 \\",
@@ -72,7 +71,7 @@ python create_scripts.py \
     --max-update-iter 500 \
     --num-random-restarts 2
 
-# DCGAN + Regularization
+# DCGAN + Reg
 python create_scripts.py \
     --input-type full-input \
     --measurement-type gaussian \
@@ -96,7 +95,7 @@ python create_scripts.py \
     --max-update-iter 500 \
     --num-random-restarts 1
 
-# DCGAN + Regularization : Err vs noise
+# DCGAN + Reg : Err vs noise
 python create_scripts.py \
     --input-type full-input \
     --measurement-type gaussian \
@@ -108,7 +107,6 @@ python create_scripts.py \
     --max-update-iter 5000 \
     --num-random-restarts 1
 
-
 # Lasso (Wavelet) : Err vs Noise
 python create_scripts.py \
     --input-type full-input \
@@ -118,7 +116,6 @@ python create_scripts.py \
     --model-types lasso-wavelet \
     --lmbd 0.1
 
-
 ##### Lasso (DCT) : Err vs Noise
 python create_scripts.py \
     --input-type full-input \
@@ -127,35 +124,3 @@ python create_scripts.py \
     --num-measurements 2500 \
     --model-types lasso-dct \
     --lmbd 0.1
-
-python create_scripts.py \
-    --input-type full-input \
-    --measurement-type gaussian \
-    --noise-std 0.1 \
-    --num-measurements 2500 \
-    --model-types lasso-dct \
-    --lmbd 10.0
-
-python create_scripts.py \
-    --input-type full-input \
-    --measurement-type gaussian \
-    --noise-std 1.0 \
-    --num-measurements 2500 \
-    --model-types lasso-dct \
-    --lmbd 1000.0
-
-python create_scripts.py \
-    --input-type full-input \
-    --measurement-type gaussian \
-    --noise-std 10.0 \
-    --num-measurements 2500 \
-    --model-types lasso-dct \
-    --lmbd 100000.0
-
-python create_scripts.py \
-    --input-type full-input \
-    --measurement-type gaussian \
-    --noise-std 100.0 \
-    --num-measurements 2500 \
-    --model-types lasso-dct \
-    --lmbd 10000000.0

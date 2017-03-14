@@ -1,7 +1,6 @@
 """Inputs for celebA dataset"""
 
 import glob
-import os
 import numpy as np
 import dcgan_utils
 import celebA_model_def
@@ -10,8 +9,7 @@ import tensorflow as tf
 
 def get_full_input(hparams):
     """Create input tensors"""
-
-    image_paths = glob.glob(os.path.join("../data", 'celebAtest', "*.jpg"))
+    image_paths = glob.glob(hparams.input_path_pattern)
     if hparams.input_type == 'full-input':
         image_paths.sort()
         image_paths = image_paths[:hparams.num_input_images]
@@ -35,7 +33,6 @@ def sample_generator_images(hparams):
     # Create the generator
     z_batch = tf.Variable(tf.random_normal([hparams.batch_size, 100]))
     x_hat_batch, restore_dict, restore_path = celebA_model_def.dcgan_gen(z_batch, sess, hparams)
-
 
     # Intialize and restore model parameters
     init_op = tf.initialize_all_variables()

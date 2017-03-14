@@ -29,7 +29,7 @@ def devec(vector):
     return channels
 
 
-def wavelet_basis(path='../wavelet_basis.npy'):
+def wavelet_basis(path='./wavelet_basis.npy'):
     W_ = np.load(path)
     # W_ initially has shape (4096,64,64), i.e. 4096 64x64 images
     # reshape this into 4096x4096, where each row is an image
@@ -114,9 +114,7 @@ def lasso_wavelet_ycbcr_estimator(hparams):  #pylint: disable = W0613
             y_val = y_batch_val_temp[j]
             z_hat = utils.solve_lasso(WA, y_val, hparams)
             x_hat = np.dot(z_hat, WU) + V.ravel()
-            print x_hat.shape
             x_hat_max = np.abs(x_hat).max()
-            print x_hat_max
             x_hat = x_hat / (1.0 * x_hat_max)
             x_hat_batch.append(x_hat)
         x_hat_batch = np.asarray(x_hat_batch)
@@ -152,7 +150,6 @@ def dcgan_estimator(hparams):
     zp_loss_batch =  tf.reduce_sum(z_batch**2, 1)
     d_loss1_batch = -tf.log(prob)
     d_loss2_batch =  tf.log(1-prob)
-    # deviation_loss = tf.reduce_mean((x_g_batch - x_hat_batch)**2, 1)
 
     # define total loss
     total_loss_batch = hparams.mloss1_weight * m_loss1_batch \
@@ -160,7 +157,6 @@ def dcgan_estimator(hparams):
                      + hparams.zprior_weight * zp_loss_batch \
                      + hparams.dloss1_weight * d_loss1_batch \
                      + hparams.dloss2_weight * d_loss2_batch
-                     # + hparams.deviation_weight * deviation_loss
     total_loss = tf.reduce_mean(total_loss_batch)
 
     # Compute means for logging
@@ -173,8 +169,9 @@ def dcgan_estimator(hparams):
     # Set up gradient descent
     global_step = tf.Variable(0, trainable=False)
     learning_rate = utils.get_learning_rate(global_step, hparams)
-    opt = utils.get_optimizer(learning_rate, hparams)
-    update_op = opt.minimize(total_loss, var_list=[z_batch], global_step=global_step, name='update_op')
+    with tf.variable_scope(tf.get_variable_scope(), reuse=False):
+        opt = utils.get_optimizer(learning_rate, hparams)
+        update_op = opt.minimize(total_loss, var_list=[z_batch], global_step=global_step, name='update_op')
 
     # Intialize and restore model parameters
     init_op = tf.initialize_all_variables()

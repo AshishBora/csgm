@@ -1,5 +1,5 @@
 """Model definitions for MNIST"""
-# pylint: disable=C0301,C0103
+# pylint: disable = C0301, C0103
 
 import tensorflow as tf
 
@@ -25,7 +25,7 @@ def vae_gen(num_images):
         b_out = tf.Variable(tf.zeros([n_input], dtype=tf.float32), name='b_out')
         x_hat = tf.nn.sigmoid(tf.matmul(hidden2, w_out) + b_out, name='x_hat')
 
-    restore_path = '../models/mnist/model2.ckpt'
+    restore_path = './models/mnist/model2.ckpt'
     restore_dict = {'Variable_7': weights1,
                     'Variable_8': weights2,
                     'Variable_9': w_out,

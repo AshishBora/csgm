@@ -223,7 +223,7 @@ def plot_image(image, cmap=None):
 
 
 def get_checkpoint_dir(hparams, model_type):
-    base_dir = '../estimated/{0}/{1}/{2}/{3}/{4}/{5}/'.format(
+    base_dir = './estimated/{0}/{1}/{2}/{3}/{4}/{5}/'.format(
         hparams.dataset,
         hparams.input_type,
         hparams.measurement_type,
@@ -293,7 +293,7 @@ def get_save_paths(hparams, image_num):
 
 
 def get_matrix_save_path(hparams):
-    save_path = '../estimated/{0}/{1}/{2}/{3}/{4}/matrix_{5}.png'.format(
+    save_path = './estimated/{0}/{1}/{2}/{3}/{4}/matrix_{5}.png'.format(
         hparams.dataset,
         hparams.input_type,
         hparams.measurement_type,
@@ -387,7 +387,7 @@ def get_A_superres(hparams):
 
 
 def get_A_restore_path(hparams):
-    pattern = '../optimization/mnist-e2e/checkpoints/adam_0.001_{0}_{1}/'
+    pattern = './optimization/mnist-e2e/checkpoints/adam_0.001_{0}_{1}/'
     if hparams.measurement_type == 'fixed':
         ckpt_dir = pattern.format(hparams.num_measurements, 'False')
     elif hparams.measurement_type == 'learned':
@@ -412,12 +412,15 @@ def restore_A(hparams):
 def get_A(hparams):
     if hparams.measurement_type == 'gaussian':
         A = np.random.randn(hparams.n_input, hparams.num_measurements)
-    elif hparams.measurement_type == 'inpaint':
-        A = get_A_inpaint(hparams)
     elif hparams.measurement_type == 'superres':
         A = get_A_superres(hparams)
     elif hparams.measurement_type in ['fixed', 'learned']:
         A = restore_A(hparams)
+    elif hparams.measurement_type == 'inpaint':
+        A = get_A_inpaint(hparams)
+    elif hparams.measurement_type == 'project':
+        hparams.inpaint_size = 0
+        A = get_A_inpaint(hparams)
     else:
         raise NotImplementedError
     return A
