@@ -1,7 +1,6 @@
 python -u ./src/compressed_sensing.py \
     --dataset celebA \
-    --input-type full-input \
-    --input-path-pattern "$1" \
+    --input-type gen-span \
     --num-input-images 1 \
     --batch-size 1 \
     \

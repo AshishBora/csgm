@@ -34,7 +34,7 @@ def generate_basis():
 
 def main():
     basis = generate_basis()
-    np.save('../wavelet_basis.npy', basis)
+    np.save('./wavelet_basis.npy', basis)
 
 
 if __name__ == '__main__':
