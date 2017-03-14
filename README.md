@@ -2,10 +2,7 @@
 
 This repository provides code to reproduce results from the paper: [Compressed Sensing using Generative Models](https://arxiv.org/abs/1703.03208)
 
-### Steps to reproduce the results:
----
-
-#### Preliminaries
+### Preliminaries
 ---
 
 Download the datasets
@@ -14,13 +11,11 @@ $ python download.py mnist
 $ python download.py celebA
 ```
 
-Make a new folder ```data/celebAtest``` and put some images in that folder. These images will be used for testing the algorithms. The list of images **not** used while training the model can be found [here](https://drive.google.com/open?id=0B0ox77cWXKmLb2pscng0dWlrMjg).
-
 Download pretrained models from <https://drive.google.com/open?id=0B0ox77cWXKmLLUhtWEt3RGdpczg> and put them in ```models/```
 
 To use wavelet based estimators, you need to run ```$ python ./src/wavelet_basis.py``` to create the basis matrix.
 
-#### Experiments
+### Experiments
 ---
 These are the supported experiments:
 
@@ -32,7 +27,12 @@ These are the supported experiments:
 
 For a quick demo of these experiments on MNIST, run ```$ python ./quick_scripts/mnist_{expt}.sh```. For quick demo on celebA, identify an image on which you wish to run it, and run ```$ python ./quick_scripts/celebA_{expt}.sh /path/to/image```
 
-To reproduce the quantitative results, follow these steps:
+### Reproducing quantitative results
+---
+
+For MNIST, we just use the standard test set. For celebA, make a new folder ```data/celebAtest``` and put some images in that folder. These images will be used for testing the algorithms. The list of images **not** used while training the model can be found [here](https://drive.google.com/open?id=0B0ox77cWXKmLb2pscng0dWlrMjg). 
+
+Now follow these steps:
 
 1. Identfy a dataset you would like to get the quantitative results on. Locate the file ```./quant_scripts/{dataset}_reconstr.sh```.
 
