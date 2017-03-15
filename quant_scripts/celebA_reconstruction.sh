@@ -37,7 +37,7 @@ python create_scripts.py \
     --input-type full-input \
     --measurement-type gaussian \
     --noise-std 0.01 \
-    --num-measurements 20 50 100 200 500 1000 2500 \
+    --num-measurements 20 50 100 200 500 1000 2500 5000 7500 10000 \
     --model-types lasso-dct \
     --lmbd 0.1
 
@@ -46,18 +46,18 @@ python create_scripts.py \
     --input-type full-input \
     --measurement-type gaussian \
     --noise-std 0.01 \
-    --num-measurements 20 50 100 200 500 1000 2500 \
-    --model-types lasso-wavelet \
+    --num-measurements 20 50 100 200 500 1000 2500 5000 7500 10000 \
+    --model-types lasso-wavelet \g
     --lmbd 0.00001
 
-# Lasso (Wavelet - YCbCr)
-python create_scripts.py \
-    --input-type full-input \
-    --measurement-type gaussian \
-    --noise-std 0.01 \
-    --num-measurements 20 50 100 200 500 1000 2500 \
-    --model-types lasso-wavelet-ycbcr \
-    --lmbd 0.00001 0.0001 0.001 0.01 0.1
+# # Lasso (Wavelet - YCbCr)
+# python create_scripts.py \
+#     --input-type full-input \
+#     --measurement-type gaussian \
+#     --noise-std 0.01 \
+#     --num-measurements 20 50 100 200 500 1000 2500 5000 7500 10000 \
+#     --model-types lasso-wavelet-ycbcr \
+#     --lmbd 0.00001 0.0001 0.001 0.01 0.1
 
 # DCGAN
 python create_scripts.py \
@@ -83,7 +83,7 @@ python create_scripts.py \
     --max-update-iter 500 \
     --num-random-restarts 10
 
-# DCGAN : From generator
+# DCGAN + Reg : From generator
 python create_scripts.py \
     --input-type gen-span \
     --measurement-type gaussian \
