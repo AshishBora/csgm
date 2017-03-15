@@ -1,4 +1,4 @@
-# BASE_SCRIPT = [
+# BASE_SCRIPT   [
 #     "python -u ./src/compressed_sensing.py \\",
 #     "    --dataset mnist \\",
 #     "    --input-type full-input \\",
@@ -45,10 +45,10 @@ python create_scripts.py \
 python create_scripts.py \
     --input-type full-input \
     --measurement-type gaussian \
-    --noise-std=0.1 \
+    --noise-std 0.1 \
     --num-measurements 10 25 50 100 200 300 400 500 750 \
     --model-types vae \
-    --zprior_weight 0.0 0.1 1.0 \
+    --zprior_weight 0.0 0.1 \
     --max-update-iter 1000 \
     --num-random-restarts 10
 
@@ -56,10 +56,10 @@ python create_scripts.py \
 python create_scripts.py \
     --input-type gen-span \
     --measurement-type gaussian \
-    --noise-std=0.1 \
+    --noise-std 0.1 \
     --num-measurements 10 25 50 100 200 300 400 500 750 \
     --model-types vae \
-    --zprior_weight 0.0 0.1 1.0 \
+    --zprior_weight 0.0 0.1 \
     --max-update-iter 1000 \
     --num-random-restarts 10
 
@@ -67,7 +67,7 @@ python create_scripts.py \
 python create_scripts.py \
     --input-type full-input \
     --measurement-type fixed learned \
-    --noise-std=0.1 \
+    --noise-std 0.1 \
     --num-measurements 10 20 30 \
     --model-types learned
 
@@ -75,16 +75,16 @@ python create_scripts.py \
 python create_scripts.py \
     --input-type full-input \
     --measurement-type gaussian \
-    --noise-std 0.01 0.02 0.05 0.1 0.2 0.5 1.0 2.0 5.0 10.0 20.0 50.0 \
+    --noise-std 0.01 0.1 1.0 2.0 5.0 10.0 20.0 50.0 \
     --model-types lasso \
-    --num-measurements 100 500 \
-    --lmbd=0.1
+    --num-measurements 500 \
+    --lmbd 0.1
 
 # VAE : Error vs noise
 python create_scripts.py \
     --input-type full-input \
     --measurement-type gaussian \
-    --noise-std 0.01 0.02 0.05 0.1 0.2 0.5 1.0 2.0 5.0 10.0 20.0 50.0\
+    --noise-std 0.01 0.1 1.0 2.0 5.0 10.0 20.0 50.0 \
     --model-types vae \
     --num-measurements 100 500 \
     --zprior_weight 0.1 \
