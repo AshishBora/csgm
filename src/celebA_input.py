@@ -35,7 +35,7 @@ def sample_generator_images(hparams):
     x_hat_batch, restore_dict, restore_path = celebA_model_def.dcgan_gen(z_batch, sess, hparams)
 
     # Intialize and restore model parameters
-    init_op = tf.initialize_all_variables()
+    init_op = tf.global_variables_initializer()
     sess.run(init_op)
 
     restorer = tf.train.Saver(var_list=restore_dict)
