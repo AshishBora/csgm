@@ -50,15 +50,6 @@ python create_scripts.py \
     --model-types lasso-wavelet \
     --lmbd 0.00001
 
-# # Lasso (Wavelet - YCbCr)
-# python create_scripts.py \
-#     --input-type full-input \
-#     --measurement-type gaussian \
-#     --noise-std 0.01 \
-#     --num-measurements 20 50 100 200 500 1000 2500 5000 7500 10000 \
-#     --model-types lasso-wavelet-ycbcr \
-#     --lmbd 0.00001 0.0001 0.001 0.01 0.1
-
 # DCGAN
 python create_scripts.py \
     --input-type full-input \
@@ -99,7 +90,7 @@ python create_scripts.py \
 python create_scripts.py \
     --input-type full-input \
     --measurement-type gaussian \
-    --noise-std 0.01 0.02 0.05 0.1 0.2 0.5 1.0 2.0 5.0 10.0 20.0 50.0 100.0 \
+    --noise-std 0.01 1.0 10.0 20.0 50.0 100.0 \
     --num-measurements 2500 \
     --model-types dcgan \
     --zprior_weight 0.001 \
@@ -111,7 +102,7 @@ python create_scripts.py \
 python create_scripts.py \
     --input-type full-input \
     --measurement-type gaussian \
-    --noise-std 0.01 10.0 20.0 50.0 100.0 \
+    --noise-std 0.01 1.0 10.0 20.0 50.0 100.0 \
     --num-measurements 2500 \
     --model-types lasso-wavelet \
     --lmbd 0.1
@@ -120,7 +111,7 @@ python create_scripts.py \
 python create_scripts.py \
     --input-type full-input \
     --measurement-type gaussian \
-    --noise-std 0.01 0.1 1.0 10.0 20.0 50.0 100.0 \
+    --noise-std 0.01 1.0 10.0 20.0 50.0 100.0 \
     --num-measurements 2500 \
     --model-types lasso-dct \
     --lmbd 0.1
