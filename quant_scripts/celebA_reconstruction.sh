@@ -47,7 +47,7 @@ python create_scripts.py \
     --measurement-type gaussian \
     --noise-std 0.01 \
     --num-measurements 20 50 100 200 500 1000 2500 5000 7500 10000 \
-    --model-types lasso-wavelet \g
+    --model-types lasso-wavelet \
     --lmbd 0.00001
 
 # # Lasso (Wavelet - YCbCr)
