@@ -45,16 +45,18 @@ $ while read f; do mv data/celebA/$f data/celebAtest/; done <celebA_unused.txt
 
 Now follow these steps:
 
-1. Identfy a dataset you would like to get the quantitative results on. Locate the file ```./quant_scripts/{dataset}_reconstr.sh```.
+1. Create a scripts directory ```$ mkdir scripts```
 
-2. Change ```BASE_SCRIPT``` in ```src/create_scripts.py``` to be the same as given at the top of ```./quant_scripts/{dataset}_reconstr.sh```.
+2. Identfy a dataset you would like to get the quantitative results on. Locate the file ```./quant_scripts/{dataset}_reconstr.sh```.
 
-3. Optionally, comment out the parts of ```./quant_scripts/{dataset}_reconstr.sh``` that you don't want to run.
+3. Change ```BASE_SCRIPT``` in ```src/create_scripts.py``` to be the same as given at the top of ```./quant_scripts/{dataset}_reconstr.sh```.
 
-4. Run  ```$ ./{dataset}_reconstr.sh```. This will create a bunch of ```.sh``` files in the ```./scripts/``` directory, each one of them for a different parameter setting.
+4. Optionally, comment out the parts of ```./quant_scripts/{dataset}_reconstr.sh``` that you don't want to run.
 
-5. Start running these scripts.
+5. Run  ```$ ./{dataset}_reconstr.sh```. This will create a bunch of ```.sh``` files in the ```./scripts/``` directory, each one of them for a different parameter setting.
+
+6. Start running these scripts.
     - You can run ```$ ./utils/run_sequentially.sh``` to run them one by one.
     - Alternatively use ```$ ./utils/run_all_by_number.sh``` to create screens and start proccessing them in parallel. [REQUIRES: gnu screen][WARNING: This may overwhelm the computer]. You can use ```$ ./utils/stop_all_by_number.sh``` to stop the running processes, and clear up the screens started this way.
 
-6. These scripts will save the results to appropriately named directories. To get the plots, see ```src/metrics.ipynb```. Reconstructed images, can be found in ```estimated/```. To get the matrix of images (as in the paper), see ```src/view_est_{dataset}.ipynb```.
+7. These scripts will save the results to appropriately named directories. To get the plots, see ```src/metrics.ipynb```. Reconstructed images, can be found in ```estimated/```. To get the matrix of images (as in the paper), see ```src/view_est_{dataset}.ipynb```.
