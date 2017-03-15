@@ -78,7 +78,7 @@ def vae_estimator(hparams):
     update_op = opt.minimize(total_loss, var_list=[z_batch], global_step=global_step, name='update_op')
 
     # Intialize and restore model parameters
-    init_op = tf.initialize_all_variables()
+    init_op = tf.global_variables_initializer()
     sess.run(init_op)
     restorer = tf.train.Saver(var_list=restore_dict)
     restorer.restore(sess, restore_path)

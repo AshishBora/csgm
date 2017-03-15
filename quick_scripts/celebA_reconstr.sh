@@ -9,7 +9,7 @@ python -u ./src/compressed_sensing.py \
     --noise-std 0.01 \
     --num-measurements 500 \
     \
-    --model-types dcgan \
+    --model-types lasso-dct lasso-wavelet dcgan \
     --mloss1_weight 0.0 \
     --mloss2_weight 1.0 \
     --zprior_weight 0.001 \

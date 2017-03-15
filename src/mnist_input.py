@@ -26,7 +26,7 @@ def sample_generator_images(sample_size):
     sess = tf.Session()
 
     # Intialize and restore model parameters
-    init_op = tf.initialize_all_variables()
+    init_op = tf.global_variables_initializer()
     sess.run(init_op)
 
     restorer = tf.train.Saver(var_list=restore_dict)

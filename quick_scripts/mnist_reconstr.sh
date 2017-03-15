@@ -8,7 +8,7 @@ python -u ./src/compressed_sensing.py \
     --noise-std 0.1 \
     --num-measurements 100 \
     \
-    --model-types vae \
+    --model-types lasso vae \
     --mloss1_weight 0.0 \
     --mloss2_weight 1.0 \
     --zprior_weight 0.1 \
