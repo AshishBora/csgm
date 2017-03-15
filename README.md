@@ -2,6 +2,15 @@
 
 This repository provides code to reproduce results from the paper: [Compressed Sensing using Generative Models](https://arxiv.org/abs/1703.03208)
 
+### Requirements: 
+---
+
+1. [Tensorflow](https://www.tensorflow.org/install/)
+2. [PyPNG](http://stackoverflow.com/a/31143108/3537687)
+3. [matplotlib](http://matplotlib.org/users/installing.html)
+4. [PyWavelets](http://pywavelets.readthedocs.io/en/latest/#install)
+5. [CVXOPT](http://cvxopt.org/install/index.html)
+
 ### Preliminaries
 ---
 
@@ -53,10 +62,12 @@ Now follow these steps:
 
 4. Optionally, comment out the parts of ```./quant_scripts/{dataset}_reconstr.sh``` that you don't want to run.
 
-5. Run  ```$ ./{dataset}_reconstr.sh```. This will create a bunch of ```.sh``` files in the ```./scripts/``` directory, each one of them for a different parameter setting.
+5. Run ```./quant_scripts/{dataset}_reconstr.sh```. This will create a bunch of ```.sh``` files in the ```./scripts/``` directory, each one of them for a different parameter setting.
 
-6. Start running these scripts.
+6. Start running these scripts. They will save the results to appropriately named directories.
     - You can run ```$ ./utils/run_sequentially.sh``` to run them one by one.
     - Alternatively use ```$ ./utils/run_all_by_number.sh``` to create screens and start proccessing them in parallel. [REQUIRES: gnu screen][WARNING: This may overwhelm the computer]. You can use ```$ ./utils/stop_all_by_number.sh``` to stop the running processes, and clear up the screens started this way.
 
-7. These scripts will save the results to appropriately named directories. To get the plots, see ```src/metrics.ipynb```. Reconstructed images, can be found in ```estimated/```. To get the matrix of images (as in the paper), see ```src/view_est_{dataset}.ipynb```.
+7. Create a results directory : ```$ mkdir results```
+
+8. Reconstructed images, can be found in ```estimated/```. To get the plots, see ```src/metrics.ipynb```. To get the matrix of images (as in the paper), see ```src/view_est_{dataset}.ipynb```.
