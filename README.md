@@ -2,6 +2,15 @@
 
 This repository provides code to reproduce results from the paper: [Compressed Sensing using Generative Models](https://arxiv.org/abs/1703.03208)
 
+### Requirements: 
+---
+
+1. [Tensorflow](https://www.tensorflow.org/install/)
+2. [PyPNG](http://stackoverflow.com/a/31143108/3537687)
+3. [matplotlib](http://matplotlib.org/users/installing.html)
+4. [PyWavelets](http://pywavelets.readthedocs.io/en/latest/#install)
+5. [CVXOPT](http://cvxopt.org/install/index.html)
+
 ### Preliminaries
 ---
 
@@ -53,7 +62,7 @@ Now follow these steps:
 
 4. Optionally, comment out the parts of ```./quant_scripts/{dataset}_reconstr.sh``` that you don't want to run.
 
-5. Run  ```$ ./{dataset}_reconstr.sh```. This will create a bunch of ```.sh``` files in the ```./scripts/``` directory, each one of them for a different parameter setting.
+5. Run ```./quant_scripts/{dataset}_reconstr.sh```. This will create a bunch of ```.sh``` files in the ```./scripts/``` directory, each one of them for a different parameter setting.
 
 6. Start running these scripts. They will save the results to appropriately named directories.
     - You can run ```$ ./utils/run_sequentially.sh``` to run them one by one.
