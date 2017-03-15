@@ -31,13 +31,12 @@ These are the supported experiments:
 4. Quantifying representation error (projection)
 5. Inpainting
 
-For a quick demo of these experiments on MNIST, run ```$ python ./quick_scripts/mnist_{expt}.sh```. For quick demo on celebA, identify an image on which you wish to run it, and run ```$ python ./quick_scripts/celebA_{expt}.sh /path/to/image```
+For a quick demo of these experiments on MNIST, run ```$ python ./quick_scripts/mnist_{expt}.sh```. For quick demo on celebA, identify an image on which you wish to run it, and run ```$ python ./quick_scripts/celebA_{expt}.sh "/path/to/image"```
 
 ### Reproducing quantitative results
 ---
 
-For MNIST, we just use the standard test set. For celebA, make a new folder ```data/celebAtest``` and put some images in that folder. These images will be used for testing the algorithms. The list of images **not** used while training the model can be found [here](https://www.cs.utexas.edu/~ashishb/csgm/celebA_unused.txt). You can move all files using:
-
+For MNIST, we just use the standard test set. For celebA, we use a subset of images **not** used while training.
 ```shell
 $ mkdir data/celebAtest
 $ wget https://www.cs.utexas.edu/~ashishb/csgm/celebA_unused.txt
