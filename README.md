@@ -11,7 +11,13 @@ $ python download.py mnist
 $ python download.py celebA
 ```
 
-Download pretrained models from <https://drive.google.com/open?id=0B0ox77cWXKmLLUhtWEt3RGdpczg> and put them in ```models/```
+Download and extract pretrained models
+
+```shell
+$ wget https://www.cs.utexas.edu/~ashishb/csgm/csgm_pretrained.zip
+$ unzip csgm_pretrained.zip
+$ rm csgm_pretrained.zip
+```
 
 To use wavelet based estimators, you need to run ```$ python ./src/wavelet_basis.py``` to create the basis matrix.
 
@@ -30,7 +36,13 @@ For a quick demo of these experiments on MNIST, run ```$ python ./quick_scripts/
 ### Reproducing quantitative results
 ---
 
-For MNIST, we just use the standard test set. For celebA, make a new folder ```data/celebAtest``` and put some images in that folder. These images will be used for testing the algorithms. The list of images **not** used while training the model can be found [here](https://drive.google.com/open?id=0B0ox77cWXKmLb2pscng0dWlrMjg). 
+For MNIST, we just use the standard test set. For celebA, make a new folder ```data/celebAtest``` and put some images in that folder. These images will be used for testing the algorithms. The list of images **not** used while training the model can be found [here](https://www.cs.utexas.edu/~ashishb/csgm/celebA_unused.txt). You can move all files using:
+
+```shell
+$ mkdir data/celebAtest
+$ wget https://www.cs.utexas.edu/~ashishb/csgm/celebA_unused.txt
+$ while read f; do mv data/celebA/$f data/celebAtest/; done <celebA_unused.txt
+```
 
 Now follow these steps:
 
