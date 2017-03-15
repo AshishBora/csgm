@@ -6,6 +6,7 @@ import numpy as np
 import utils
 import scipy.fftpack as fftpack
 import celebA_model_def
+import copy
 
 
 def dct2(image_channel):
@@ -47,13 +48,14 @@ def lasso_dct_estimator(hparams):  #pylint: disable = W0613
     def estimator(A_val, y_batch_val, hparams):
         # One can prove that taking 2D DCT of each row of A,
         # then solving usual LASSO, and finally taking 2D ICT gives the correct answer.
+        A_new = copy.deepcopy(A_val)
         for i in range(A_val.shape[1]):
-            A_val[:, i] = vec([dct2(channel) for channel in devec(A_val[:, i])])
+            A_new[:, i] = vec([dct2(channel) for channel in devec(A_new[:, i])])
 
         x_hat_batch = []
         for j in range(hparams.batch_size):
             y_val = y_batch_val[j]
-            z_hat = utils.solve_lasso(A_val, y_val, hparams)
+            z_hat = utils.solve_lasso(A_new, y_val, hparams)
             x_hat = vec([idct2(channel) for channel in devec(z_hat)]).T
             x_hat = np.maximum(np.minimum(x_hat, 1), -1)
             x_hat_batch.append(x_hat)
