@@ -59,7 +59,7 @@ python create_scripts.py \
     --noise-std 0.1 \
     --num-measurements 10 25 50 100 200 300 400 500 750 \
     --model-types vae \
-    --zprior_weight 0.0 0.1 \
+    --zprior_weight 0.1 \
     --max-update-iter 1000 \
     --num-random-restarts 10
 
