@@ -5,11 +5,12 @@ This repository provides code to reproduce results from the paper: [Compressed S
 ### Requirements: 
 ---
 
-1. [Tensorflow](https://www.tensorflow.org/install/)
-2. [PyPNG](http://stackoverflow.com/a/31143108/3537687)
-3. [matplotlib](http://matplotlib.org/users/installing.html)
-4. [PyWavelets](http://pywavelets.readthedocs.io/en/latest/#install)
-5. [CVXOPT](http://cvxopt.org/install/index.html)
+1. Python 2.7
+2. [Tensorflow](https://www.tensorflow.org/install/)
+3. [Scipy](https://www.scipy.org/install.html)
+4. [PyPNG](http://stackoverflow.com/a/31143108/3537687)
+5. (Optional : for lasso-wavelet) [PyWavelets](http://pywavelets.readthedocs.io/en/latest/#install)
+6. (Optional) [CVXOPT](http://cvxopt.org/install/index.html)
 
 ### Preliminaries
 ---
