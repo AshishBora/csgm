@@ -20,7 +20,7 @@ python -u ./src/compressed_sensing.py \
     --learning-rate 0.1 \
     --momentum 0.9 \
     --max-update-iter 1000 \
-    --num-random-restarts 2 \
+    --num-random-restarts 1 \
     \
     --not-lazy \
     --print-stats \
