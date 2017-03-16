@@ -37,7 +37,7 @@ def lasso_vae(hparams, xs_dict, images_nums, is_save):
         pattern1 = './estimated/mnist/full-input/gaussian/0.1/' + str(num_measurements) + '/lasso/0.1/{0}.png'
         pattern2 = './estimated/mnist/full-input/gaussian/0.1/' + str(num_measurements) + '/vae/0.0_1.0_0.1_adam_0.01_0.9_False_1000_10/{0}.png'
         patterns = [pattern1, pattern2]
-        view(xs_dict, patterns, images_nums, hparams, alg_labels=False)
+        view(xs_dict, patterns, images_nums, hparams, alg_labels=True)
 
         base_path = './results/mnist_reconstr_{}_orig_lasso_vae.pdf'
         save_path = base_path.format(num_measurements)

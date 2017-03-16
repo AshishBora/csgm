@@ -41,7 +41,6 @@ def get_image_nums(start, stop, hparams):
 
 def main():
     """Make and save image matrices"""
-
     hparams = Hparams()
     xs_dict = celebA_input.model_input(hparams)
     start, stop = 20, 30
