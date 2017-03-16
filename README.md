@@ -41,7 +41,7 @@ These are the supported experiments:
 4. Quantifying representation error (projection)
 5. Inpainting
 
-For a quick demo of these experiments on MNIST, run ```$ python ./quick_scripts/mnist_{expt}.sh```. For quick demo on celebA, identify an image on which you wish to run it, and run ```$ python ./quick_scripts/celebA_{expt}.sh "/path/to/image"```
+For a quick demo of these experiments on MNIST, run ```$ ./quick_scripts/mnist_{expt}.sh```. For quick demo on celebA, identify an image on which you wish to run it, and run ```$ ./quick_scripts/celebA_{expt}.sh "/path/to/image"```
 
 ### Reproducing quantitative results
 ---
