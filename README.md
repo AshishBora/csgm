@@ -6,7 +6,7 @@ This repository provides code to reproduce results from the paper: [Compressed S
 ---
 
 1. Python 2.7
-2. [Tensorflow](https://www.tensorflow.org/install/)
+2. [Tensorflow 1.0.1](https://www.tensorflow.org/install/)
 3. [Scipy](https://www.scipy.org/install.html)
 4. [PyPNG](http://stackoverflow.com/a/31143108/3537687)
 5. (Optional : for lasso-wavelet) [PyWavelets](http://pywavelets.readthedocs.io/en/latest/#install)
