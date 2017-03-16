@@ -65,6 +65,6 @@ def end_to_end(hparams):
                     'hidden1/biases',
                     'sigmoid_logits/weights',
                     'sigmoid_logits/biases']
-    restore_dict = {var.op.name: var for var in tf.all_variables() if var.op.name in restore_vars}
+    restore_dict = {var.op.name: var for var in tf.global_variables() if var.op.name in restore_vars}
 
     return y_batch, x_hat_batch, restore_dict
