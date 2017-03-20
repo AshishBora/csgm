@@ -12,13 +12,18 @@ This repository provides code to reproduce results from the paper: [Compressed S
 5. (Optional : for lasso-wavelet) [PyWavelets](http://pywavelets.readthedocs.io/en/latest/#install)
 6. (Optional) [CVXOPT](http://cvxopt.org/install/index.html)
 
+Pip installation can be done by ```$ pip install -r requirements.txt```
+
 ### Preliminaries
 ---
 
 Download the datasets
 ```shell
 $ python download.py mnist
-$ python download.py celebA
+
+$ wget https://www.cs.utexas.edu/~ashishb/csgm/celebAtest.zip
+$ unzip celebAtest.zip -d data/
+$ rm celebAtest.zip
 ```
 
 Download and extract pretrained models
@@ -46,15 +51,6 @@ For a quick demo of these experiments on MNIST, run ```$ ./quick_scripts/mnist_{
 ### Reproducing quantitative results
 ---
 
-For MNIST, we just use the standard test set. For celebA, we use a subset of images **not** used while training.
-```shell
-$ mkdir data/celebAtest
-$ wget https://www.cs.utexas.edu/~ashishb/csgm/celebA_unused.txt
-$ while read f; do mv data/celebA/$f data/celebAtest/; done <celebA_unused.txt
-```
-
-Now follow these steps:
-
 1. Create a scripts directory ```$ mkdir scripts```
 
 2. Identfy a dataset you would like to get the quantitative results on. Locate the file ```./quant_scripts/{dataset}_reconstr.sh```.
@@ -72,3 +68,9 @@ Now follow these steps:
 8. Create a results directory : ```$ mkdir results```. To get the plots, see ```src/metrics.ipynb```. To get matrix of images (as in the paper), run ```$ python src/view_estimated_{dataset}.py```.
 
 9. You can also manually access the results saved by the scripts. These can be found in appropriately named directories in ```estimated/```. Directory name conventions are defined in ```get_checkpoint_dir()``` in ```src/utils.py```
+
+
+### Miscellaneous
+---
+For a complete list of images not used while training on celebA, see [here](https://www.cs.utexas.edu/~ashishb/csgm/celebA_unused.txt).
+
