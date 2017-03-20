@@ -1,0 +1,7 @@
+pypng
+tensorflow >= 1.0
+PyWavelets
+scipy
+matplotlib
+scikit-learn
+cvxopt
