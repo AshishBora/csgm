@@ -46,12 +46,9 @@ These are the supported experiments:
 4. Quantifying representation error (projection)
 5. Inpainting
 
-<<<<<<< HEAD
-For a quick demo of these experiments on MNIST, run ```$ ./quick_scripts/mnist_{expt}.sh```. For quick demo on celebA, identify an image on which you wish to run it, and run ```$ ./quick_scripts/celebA_{expt}.sh "/path/to/image"```
-=======
-For a quick demo of these experiments on MNIST, run ```$ python ./quick_scripts/mnist_{expt}.sh```. For example, to do the reconstruction experiments for MNIST, run ```$ python ./quick_scripts/mnist_reconstr.sh```.
+For a quick demo of these experiments on MNIST, run ```$ ./quick_scripts/mnist_{expt}.sh```. For example, to do the reconstruction experiments for MNIST, run ```$ ./quick_scripts/mnist_reconstr.sh```.
 
-For a quick demo on celebA, identify an image on which you wish to run it, and run ```$ python ./quick_scripts/celebA_{expt}.sh "/path/to/image"```. For example, to run the reconstruction experiments for image 182663 stored in the path ./images/182663.jpg, run ```$ python ./quick_scripts/celebA_reconstr.sh "./images/182663.jpg"```
+For a quick demo on celebA, identify an image on which you wish to run it, and run ```$ ./quick_scripts/celebA_{expt}.sh "/path/to/image"```. For example, to run the reconstruction experiments for image 182663 stored in the path ./images/182663.jpg, run ```$ ./quick_scripts/celebA_reconstr.sh "./images/182663.jpg"```
 
 The quick demo scripts for each experiment are given by:
 1. Reconstruction from Gaussian measurements - ```./quick_scripts/celebA_reconstr.sh```
@@ -60,7 +57,6 @@ The quick demo scripts for each experiment are given by:
 4. Quantifying representation error (projection) - ```./quick_scripts/celebA_project.sh``` 
 5. Inpainting - ```./quick_scripts/celebA_inpaint.sh``` 
  
->>>>>>> dev
 
 ### Reproducing quantitative results
 ---
