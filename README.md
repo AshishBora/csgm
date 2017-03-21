@@ -9,6 +9,14 @@ Reconstruction | Super-resolution | Inpainting
 <img src="https://github.com/AshishBora/csgm/blob/master/example_results/celebA_reconstr_500_orig_lasso-dct_lasso-wavelet_dcgan.png" alt="celebA_reconstr" width="300"> | <img src="https://github.com/AshishBora/csgm/blob/master/example_results/celebA_superres_orig_blurred_dcgan.png" alt="celebA_superres" width="300"> | <img src="https://github.com/AshishBora/csgm/blob/master/example_results/celebA_inpaint_orig_blocked_dcgan.png" alt="celebA_inpaint" width="300">
 <img src="https://github.com/AshishBora/csgm/blob/master/example_results/mnist_reconstr_100_orig_lasso_vae.png" alt="mnist_reconstr" width="300"> | <img src="https://github.com/AshishBora/csgm/blob/master/example_results/mnist_superres_orig_blurred_vae.png" alt="mnist_superres" width="300"> | <img src="https://github.com/AshishBora/csgm/blob/master/example_results/mnist_inpaint_orig_blocked_vae.png" alt="mnist_inpaint" width="300">
 
+
+Here we show the evolution of the reconstructed image for different number of iterations:
+![](https://github.com/AshishBora/csgm/blob/master/example_results/celebA.gif)
+
+
+
+
+## Steps to reproduce the results
 NOTE: Please run **all** commands from the root directory of the repository, i.e from ```csgm/```
 
 ### Requirements: 
