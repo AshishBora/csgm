@@ -1,7 +1,8 @@
 pypng
-tensorflow >= 1.0
+tensorflow >= 1.0.1
 PyWavelets
 scipy
 matplotlib
 scikit-learn
 cvxopt
+Pillow
