@@ -152,6 +152,9 @@ if __name__ == '__main__':
                                 3 = 11 = save and show image matrix
                              '''
                        )
+    PARSER.add_argument('--gif', action='store_true', help='whether to create a gif')
+    PARSER.add_argument('--gif-iter', type=int, default=1, help='save gif frame every x iter')
+    PARSER.add_argument('--gif-dir', type=str, default='', help='Where to store gif frames')
 
     HPARAMS = PARSER.parse_args()
 

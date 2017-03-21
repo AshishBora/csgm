@@ -5,6 +5,7 @@ from sklearn.linear_model import OrthogonalMatchingPursuit
 import numpy as np
 import tensorflow as tf
 import mnist_model_def
+from mnist_utils import save_image
 import utils
 
 
@@ -102,6 +103,16 @@ def vae_estimator(hparams):
                                             m_loss1_val,
                                             m_loss2_val,
                                             zp_loss_val)
+
+                if hparams.gif and ((j % hparams.gif_iter) == 0):
+                    images = sess.run(x_hat_batch, feed_dict=feed_dict)
+                    for im_num, image in enumerate(images):
+                        save_dir = '{0}/{1}/'.format(hparams.gif_dir, im_num)
+                        utils.set_up_dir(save_dir)
+                        save_path = save_dir + '{0}.png'.format(j)
+                        image = image.reshape(hparams.image_shape)
+                        save_image(image, save_path)
+
             x_hat_batch_val, total_loss_batch_val = sess.run([x_hat_batch, total_loss_batch], feed_dict=feed_dict)
             best_keeper.report(x_hat_batch_val, total_loss_batch_val)
         return best_keeper.get_best()
