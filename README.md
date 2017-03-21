@@ -36,7 +36,7 @@ $ rm csgm_pretrained.zip
 
 To use wavelet based estimators, you need to run ```$ python ./src/wavelet_basis.py``` to create the basis matrix.
 
-### Experiments
+### Quick Demos
 ---
 These are the supported experiments and example commands to run quick demos:
 
