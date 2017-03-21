@@ -19,7 +19,7 @@ NOTE: Please run **all** commands from the root directory of the repository, i.e
 ### Preliminaries
 ---
 
-Download the datasets
+Download the datasets:
 ```shell
 $ python download.py mnist
 
@@ -28,7 +28,7 @@ $ unzip celebAtest.zip -d data/
 $ rm celebAtest.zip
 ```
 
-Download and extract pretrained models
+Download and extract pretrained models:
 
 ```shell
 $ wget https://www.cs.utexas.edu/~ashishb/csgm/csgm_pretrained.zip
@@ -36,7 +36,10 @@ $ unzip csgm_pretrained.zip
 $ rm csgm_pretrained.zip
 ```
 
-To use wavelet based estimators, you need to run ```$ python ./src/wavelet_basis.py``` to create the basis matrix.
+To use wavelet based estimators, you need to create the basis matrix:
+```shell
+$ python ./src/wavelet_basis.py
+```
 
 ### Quick Demos
 ---
