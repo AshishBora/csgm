@@ -38,25 +38,23 @@ To use wavelet based estimators, you need to run ```$ python ./src/wavelet_basis
 
 ### Experiments
 ---
-These are the supported experiments:
+These are the supported experiments and example commands to run quick demos:
 
 1. Reconstruction from Gaussian measurements
+     - ```$ ./quick_scripts/mnist_reconstr.sh```
+     - ```$ ./quick_scripts/celebA_reconstr.sh "./images/182659.jpg"```    
 2. Super-resolution
-3. Reconstruction for images in the span of the generator (gen-span)
-4. Quantifying representation error (projection)
+    - ```$ ./quick_scripts/mnist_superres.sh```
+    - ```$ ./quick_scripts/celebA_superres.sh "./images/182659.jpg"```  
+3. Reconstruction for images in the span of the generator
+    - ```$ ./quick_scripts/mnist_genspan.sh```
+    - ```$ ./quick_scripts/celebA_genspan.sh```
+4. Quantifying representation error
+    - ```$ ./quick_scripts/mnist_projection.sh```
+    - ```$ ./quick_scripts/celebA_projection.sh "./images/182659.jpg"```  
 5. Inpainting
-
-For a quick demo of these experiments on MNIST, run ```$ ./quick_scripts/mnist_{expt}.sh```. For example, to do the reconstruction experiments for MNIST, run ```$ ./quick_scripts/mnist_reconstr.sh```.
-
-For a quick demo on celebA, identify an image on which you wish to run it, and run ```$ ./quick_scripts/celebA_{expt}.sh "/path/to/image"```. For example, to run the reconstruction experiments for image 182663 stored in the path ./images/182663.jpg, run ```$ ./quick_scripts/celebA_reconstr.sh "./images/182663.jpg"```
-
-The quick demo scripts for each experiment are given by:
-1. Reconstruction from Gaussian measurements - ```./quick_scripts/celebA_reconstr.sh``` and ```./quick_scripts/mnist_reconstr.sh```   
-2. Super-resolution - ```./quick_scripts/celebA_superres.sh``` and ```./quick_scripts/mnist_superres.sh```   
-3. Reconstruction for images in the span of the generator (gen-span) - ```./quick_scripts/celebA_genspan.sh```  and ```./quick_scripts/mnist_genspan.sh```   
-4. Quantifying representation error (projection) - ```./quick_scripts/celebA_projection.sh``` and ```./quick_scripts/mnist_projection.sh```  
-5. Inpainting - ```./quick_scripts/celebA_inpaint.sh``` and ```./quick_scripts/mnist_inpaint.sh```   
- 
+    - ```$ ./quick_scripts/mnist_inpaint.sh```
+    - ```$ ./quick_scripts/celebA_inpaint.sh "./images/182659.jpg"```  
 
 ### Reproducing quantitative results
 ---
