@@ -1,6 +1,15 @@
 # Compressed Sensing using Generative Models
 
-This repository provides code to reproduce results from the paper: [Compressed Sensing using Generative Models](https://arxiv.org/abs/1703.03208)
+This repository provides code to reproduce results from the paper: [Compressed Sensing using Generative Models](https://arxiv.org/abs/1703.03208).
+
+Here are a few example results:
+
+Reconstruction | Super-resolution | Inpainting
+---------------|-----------------|------------
+<img src="https://github.com/AshishBora/csgm/blob/master/example_results/celebA_reconstr_500_orig_lasso-dct_lasso-wavelet_dcgan.png" alt="celebA_reconstr" width="300"> | <img src="https://github.com/AshishBora/csgm/blob/master/example_results/celebA_superres_orig_blurred_dcgan.png" alt="celebA_superres" width="300"> | <img src="https://github.com/AshishBora/csgm/blob/master/example_results/celebA_inpaint_orig_blocked_dcgan.png" alt="celebA_inpaint" width="300">
+<img src="https://github.com/AshishBora/csgm/blob/master/example_results/mnist_reconstr_100_orig_lasso_vae.png" alt="mnist_reconstr" width="300"> | <img src="https://github.com/AshishBora/csgm/blob/master/example_results/mnist_superres_orig_blurred_vae.png" alt="mnist_superres" width="300"> | <img src="https://github.com/AshishBora/csgm/blob/master/example_results/mnist_inpaint_orig_blocked_vae.png" alt="mnist_inpaint" width="300">
+
+NOTE: Please run **all** commands from the root directory of the repository, i.e from ```csgm/```
 
 ### Requirements: 
 ---
@@ -13,8 +22,6 @@ This repository provides code to reproduce results from the paper: [Compressed S
 6. (Optional) [CVXOPT](http://cvxopt.org/install/index.html)
 
 Pip installation can be done by ```$ pip install -r requirements.txt```
-
-NOTE: Please run **all** commands from the root directory of the repository, i.e from ```csgm/```
 
 ### Preliminaries
 ---
@@ -41,9 +48,12 @@ To use wavelet based estimators, you need to create the basis matrix:
 $ python ./src/wavelet_basis.py
 ```
 
-### Quick Demos
+### Demos
 ---
-These are the supported experiments and example commands to run quick demos:
+
+The following are the supported experiments and example commands to run the demos:
+
+[Note on speed: Each MNIST experiment should take about a minute. Each celebA experiment may take about an hour on a modern CPU, but only a few minutes on a modern GPU (for 500 iterations with 2 random restarts)]
 
 1. Reconstruction from Gaussian measurements
      - ```$ ./quick_scripts/mnist_reconstr.sh```
@@ -60,6 +70,8 @@ These are the supported experiments and example commands to run quick demos:
 5. Inpainting
     - ```$ ./quick_scripts/mnist_inpaint.sh```
     - ```$ ./quick_scripts/celebA_inpaint.sh "./images/182659.jpg"```  
+    
+
 
 ### Reproducing quantitative results
 ---
