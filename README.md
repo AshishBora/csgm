@@ -14,6 +14,8 @@ This repository provides code to reproduce results from the paper: [Compressed S
 
 Pip installation can be done by ```$ pip install -r requirements.txt```
 
+NOTE: Please run **all** commands from the root directory of the repository, i.e from ```csgm/```
+
 ### Preliminaries
 ---
 
