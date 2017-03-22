@@ -61,7 +61,7 @@ $ python ./src/wavelet_basis.py
 
 The following are the supported experiments and example commands to run the demos:
 
-[Note on speed: Each MNIST experiment should take about a minute. Each celebA experiment may take about an hour on a modern CPU, but only a few minutes on a modern GPU (for 500 iterations with 2 random restarts)]
+[Note: For celebA experiments, we run very few iterations per experiment (30) to give a quick demo. To get results with better quality, increase the number of iterations to at least 500 and use at least 2 random restarts.]
 
 1. Reconstruction from Gaussian measurements
      - ```$ ./quick_scripts/mnist_reconstr.sh```
