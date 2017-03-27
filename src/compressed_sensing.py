@@ -13,7 +13,7 @@ def main(hparams):
     # Set up some stuff accoring to hparams
     hparams.n_input = np.prod(hparams.image_shape)
     utils.set_num_measurements(hparams)
-    utils.print_hparams(HPARAMS)
+    utils.print_hparams(hparams)
 
     # get inputs
     xs_dict = model_input(hparams)

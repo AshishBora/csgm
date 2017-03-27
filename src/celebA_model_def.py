@@ -1,3 +1,5 @@
+# pylint: disable = C0103, C0111, C0301, R0914
+
 """Model definitions for celebA
 
 This file is partially based on
@@ -7,18 +9,10 @@ https://github.com/carpedm20/DCGAN-tensorflow/blob/master/model.py
 They come with the following license: https://github.com/carpedm20/DCGAN-tensorflow/blob/master/LICENSE
 """
 
-# pylint: disable = C0103
-
-import numpy as np
 import tensorflow as tf
 import dcgan_model
 import dcgan_ops
 
-tf.app.flags.DEFINE_integer("m", 100, "Measurements [100]")
-tf.app.flags.DEFINE_integer("nIter", 100, "Update steps[100]")
-tf.app.flags.DEFINE_float("snr", 0.01, "Noise energy[0.01]")
-tf.app.flags.DEFINE_float("lam", None, "Regularisation[None]")
-tf.app.flags.DEFINE_integer("train_size", np.inf, "The size of train images [np.inf]")
 tf.app.flags.DEFINE_integer("batch_size", 64, "The size of batch images [64]")
 tf.app.flags.DEFINE_integer("image_size", 108,
                             "The size of image to use (will be center cropped) [108]")
