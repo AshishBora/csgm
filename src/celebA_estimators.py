@@ -243,6 +243,7 @@ def k_sparse_wavelet_estimator(hparams): #pylint: disable = W0613
             x_hat_flat = np.reshape(x_hat_reshaped, [-1])
             x_hat_batch.append(x_hat_flat)
         x_hat_batch = np.asarray(x_hat_batch)
+        x_hat_batch = np.maximum(np.minimum(x_hat_batch, 1), -1)
         return x_hat_batch
     return estimator
 
