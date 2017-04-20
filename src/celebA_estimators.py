@@ -144,7 +144,7 @@ def dcgan_estimator(hparams):
     prob, restore_dict_discrim, restore_path_discrim = celebA_model_def.dcgan_discrim(x_hat_batch, sess, hparams)
 
     # measure the estimate
-    measurement_is_sparse = (hparams.measurement_type in ['inpaint', 'superres'])
+    measurement_is_sparse = (hparams.measurement_type in ['inpaint', 'superres', 'project'])
     y_hat_batch = tf.matmul(x_hat_batch, A, b_is_sparse=measurement_is_sparse, name='y2_batch')
 
     # define all losses
