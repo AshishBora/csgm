@@ -1,13 +1,16 @@
 """Estimators for compressed sensing"""
-# pylint: disable = C0301, C0103, C0111
+# pylint: disable = C0301, C0103, C0111, R0914
 
+import copy
+import heapq
 import tensorflow as tf
 import numpy as np
 import utils
 import scipy.fftpack as fftpack
+import pywt
+
 import celebA_model_def
 from celebA_utils import save_image
-import copy
 
 
 def dct2(image_channel):
@@ -225,3 +228,67 @@ def dcgan_estimator(hparams):
         return best_keeper.get_best()
 
     return estimator
+
+
+def k_sparse_wavelet_estimator(hparams): #pylint: disable = W0613
+    """Best k-sparse wavelet projector"""
+    def estimator(A_val, y_batch_val, hparams): #pylint: disable = W0613
+        if hparams.measurement_type != 'project':
+            raise RuntimeError
+        y_batch_val /= np.sqrt(hparams.n_input)
+        x_hat_batch = []
+        for y_val in y_batch_val:
+            y_val_reshaped = np.reshape(y_val, [64, 64, 3])
+            x_hat_reshaped = k_sparse_reconstr(y_val_reshaped, hparams.sparsity)
+            x_hat_flat = np.reshape(x_hat_reshaped, [-1])
+            x_hat_batch.append(x_hat_flat)
+        x_hat_batch = np.asarray(x_hat_batch)
+        return x_hat_batch
+    return estimator
+
+
+def get_wavelet(x):
+    coefs_list = []
+    for i in range(3):
+        coefs_list.append(pywt.wavedec2(x[:, :, i], 'db1'))
+    return coefs_list
+
+
+def get_image(coefs_list):
+    x = np.zeros((64, 64, 3))
+    for i in range(3):
+        x[:, :, i] = pywt.waverec2(coefs_list[i], 'db1')
+    return x
+
+
+def get_heap(coefs_list):
+    heap = []
+    for t, coefs in enumerate(coefs_list):
+        for i, a in enumerate(coefs):
+            for j, b in enumerate(a):
+                for m, c in enumerate(b):
+                    try:
+                        for n, val in enumerate(c):
+                            heapq.heappush(heap, (-abs(val), [t, i, j, m, n, val]))
+                    except:
+                        val = c
+                        heapq.heappush(heap, (-abs(val), [t, i, j, m, val]))
+    return heap
+
+
+def k_sparse_reconstr(x, k):
+    coefs_list = get_wavelet(x)
+    heap = get_heap(coefs_list)
+
+    y = 0*x
+    coefs_list_sparse = get_wavelet(y)
+    for i in range(k):
+        _, idxs_val = heapq.heappop(heap)
+        if len(idxs_val) == 5:
+            t, i, j, m, val = idxs_val
+            coefs_list_sparse[t][i][j][m] = val
+        else:
+            t, i, j, m, n, val = idxs_val
+            coefs_list_sparse[t][i][j][m][n] = val
+    x_sparse = get_image(coefs_list_sparse)
+    return x_sparse

@@ -82,6 +82,8 @@ def get_estimator(hparams, model_type):
             estimator = celebA_estimators.lasso_wavelet_estimator(hparams)
         elif model_type == 'lasso-wavelet-ycbcr':
             estimator = celebA_estimators.lasso_wavelet_ycbcr_estimator(hparams)
+        elif model_type == 'k-sparse-wavelet':
+            estimator = celebA_estimators.k_sparse_wavelet_estimator(hparams)
         elif model_type == 'dcgan':
             estimator = celebA_estimators.dcgan_estimator(hparams)
         else:
@@ -236,9 +238,9 @@ def get_checkpoint_dir(hparams, model_type):
         dir_name = '{}'.format(
             hparams.lmbd,
         )
-    elif model_type == 'omp':
+    elif model_type == 'k-sparse-wavelet':
         dir_name = '{}'.format(
-            hparams.omp_k,
+            hparams.sparsity,
         )
     elif model_type in ['vae']:
         dir_name = '{}_{}_{}_{}_{}_{}_{}_{}_{}'.format(

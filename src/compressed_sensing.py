@@ -112,14 +112,13 @@ if __name__ == '__main__':
     # Measurement type specific hparams
     PARSER.add_argument('--num-measurements', type=int, default=200, help='number of gaussian measurements')
     PARSER.add_argument('--inpaint-size', type=int, default=1, help='size of block to inpaint')
-    PARSER.add_argument('--superres-factor', type=int, default=2, help='How downsampled is the image')
+    PARSER.add_argument('--superres-factor', type=int, default=2, help='how downsampled is the image')
 
     # Model
-    PARSER.add_argument('--model-types', type=str, nargs='+', default=None,
-                        help='model used for estimation. Currently supports nn only. lasso planned in near future.')
+    PARSER.add_argument('--model-types', type=str, nargs='+', default=None, help='model(s) used for estimation')
     PARSER.add_argument('--mloss1_weight', type=float, default=0.0, help='L1 measurement loss weight')
     PARSER.add_argument('--mloss2_weight', type=float, default=0.0, help='L2 measurement loss weight')
-    PARSER.add_argument('--zprior_weight', type=float, default=0.0, help='Weight on z prior')
+    PARSER.add_argument('--zprior_weight', type=float, default=0.0, help='weight on z prior')
     PARSER.add_argument('--dloss1_weight', type=float, default=0.0, help='-log(D(G(z))')
     PARSER.add_argument('--dloss2_weight', type=float, default=0.0, help='log(1-D(G(z))')
 
@@ -135,15 +134,15 @@ if __name__ == '__main__':
     PARSER.add_argument('--lmbd', type=float, default=0.1, help='lambda : regularization parameter for LASSO')
     PARSER.add_argument('--lasso-solver', type=str, default='sklearn', help='Solver for LASSO')
 
-    # OMP specific hparams
-    PARSER.add_argument('--omp-k', type=int, default=80, help='number of non zero entries allowed in OMP')
+    # k-sparse-wavelet specific hparams
+    PARSER.add_argument('--sparsity', type=int, default=1, help='number of non zero entries allowed in k-sparse-wavelet')
 
     # Output
     PARSER.add_argument('--not-lazy', action='store_true', help='whether the evaluation is lazy')
     PARSER.add_argument('--save-images', action='store_true', help='whether to save estimated images')
     PARSER.add_argument('--save-stats', action='store_true', help='whether to save estimated images')
     PARSER.add_argument('--print-stats', action='store_true', help='whether to print statistics')
-    PARSER.add_argument('--checkpoint-iter', type=int, default=50, help='Checkpoint every x batches')
+    PARSER.add_argument('--checkpoint-iter', type=int, default=50, help='checkpoint every x batches')
     PARSER.add_argument('--image-matrix', type=int, default=0,
                         help='''
                                 0 = 00 =      no       image matrix,
@@ -154,7 +153,7 @@ if __name__ == '__main__':
                        )
     PARSER.add_argument('--gif', action='store_true', help='whether to create a gif')
     PARSER.add_argument('--gif-iter', type=int, default=1, help='save gif frame every x iter')
-    PARSER.add_argument('--gif-dir', type=str, default='', help='Where to store gif frames')
+    PARSER.add_argument('--gif-dir', type=str, default='', help='where to store gif frames')
 
     HPARAMS = PARSER.parse_args()
 
