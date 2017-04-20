@@ -14,17 +14,18 @@ BASE_SCRIPT = [
     "    --num-input-images 64 \\",
     "    --batch-size 64 \\",
     "    \\",
-    "    --measurement-type gaussian \\",
+    "    --measurement-type project \\",
     "    --noise-std 0.01 \\",
     "    --num-measurements 50 \\",
     "    \\",
-    "    --model-types dcgan \\",
+    "    --model-types k-sparse-wavelet \\",
     "    --mloss1_weight 0.0 \\",
     "    --mloss2_weight 1.0 \\",
     "    --zprior_weight 0.001 \\",
     "    --dloss1_weight 0.0 \\",
     "    --dloss2_weight 0.0 \\",
     "    --lmbd 0.1 \\",
+    "    --sparsity 50 \\",
     "    \\",
     "    --optimizer-type adam \\",
     "    --learning-rate 0.1 \\",
@@ -108,6 +109,7 @@ if __name__ == '__main__':
                                     'lmbd',
                                     'max-update-iter',
                                     'num-random-restarts',
+                                    'sparsity',
                                    ]
 
     for hparam in HPARAM_NAMES_FOR_GRID_SEARCH:
