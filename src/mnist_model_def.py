@@ -1,5 +1,5 @@
 """Model definitions for MNIST"""
-# pylint: disable = C0301, C0103
+# pylint: disable = C0301, C0103, R0914, C0111
 
 import tensorflow as tf
 

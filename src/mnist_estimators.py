@@ -1,5 +1,5 @@
 """Estimators for compressed sensing"""
-# pylint: disable = C0301, C0103, C0111
+# pylint: disable = C0301, C0103, C0111, R0914
 
 from sklearn.linear_model import OrthogonalMatchingPursuit
 import numpy as np
@@ -9,7 +9,7 @@ from mnist_utils import save_image
 import utils
 
 
-def lasso_estimator(hparams):
+def lasso_estimator(hparams):  # pylint: disable = W0613
     """LASSO estimator"""
     def estimator(A_val, y_batch_val, hparams):
         x_hat_batch = []
@@ -73,10 +73,12 @@ def vae_estimator(hparams):
     zp_loss = tf.reduce_mean(zp_loss_batch)
 
     # Set up gradient descent
-    global_step = tf.Variable(0, trainable=False)
+    var_list = [z_batch]
+    global_step = tf.Variable(0, trainable=False, name='global_step')
     learning_rate = utils.get_learning_rate(global_step, hparams)
     opt = utils.get_optimizer(learning_rate, hparams)
-    update_op = opt.minimize(total_loss, var_list=[z_batch], global_step=global_step, name='update_op')
+    update_op = opt.minimize(total_loss, var_list=var_list, global_step=global_step, name='update_op')
+    opt_reinit_op = utils.get_opt_reinit_op(opt, var_list, global_step)
 
     # Intialize and restore model parameters
     init_op = tf.global_variables_initializer()
@@ -89,7 +91,7 @@ def vae_estimator(hparams):
         best_keeper = utils.BestKeeper(hparams)
         feed_dict = {A: A_val, y_batch: y_batch_val}
         for i in range(hparams.num_random_restarts):
-            sess.run([z_batch.initializer])
+            sess.run(opt_reinit_op)
             for j in range(hparams.max_update_iter):
                 _, lr_val, total_loss_val, \
                 m_loss1_val, \
@@ -130,8 +132,9 @@ def learned_estimator(hparams):
     restorer = tf.train.Saver(var_list=restore_dict)
     restorer.restore(sess, restore_path)
 
-    def estimator(A_val, y_batch_val, hparams):
+    def estimator(A_val, y_batch_val, hparams):  # pylint: disable = W0613
         """Function that returns the estimated image"""
         x_hat_batch_val = sess.run(x_hat_batch, feed_dict={y_batch: y_batch_val})
         return x_hat_batch_val
+
     return estimator

@@ -140,7 +140,7 @@ def dcgan_estimator(hparams):
     y_batch = tf.placeholder(tf.float32, shape=(hparams.batch_size, hparams.num_measurements), name='y_batch')
 
     # Create the generator
-    z_batch = tf.Variable(tf.random_normal([hparams.batch_size, 100]))
+    z_batch = tf.Variable(tf.random_normal([hparams.batch_size, 100]), name='z_batch')
     x_hat_batch, restore_dict_gen, restore_path_gen = celebA_model_def.dcgan_gen(z_batch, sess, hparams)
 
     # Create the discriminator
@@ -173,11 +173,13 @@ def dcgan_estimator(hparams):
     d_loss2 = tf.reduce_mean(d_loss2_batch)
 
     # Set up gradient descent
-    global_step = tf.Variable(0, trainable=False)
+    var_list = [z_batch]
+    global_step = tf.Variable(0, trainable=False, name='global_step')
     learning_rate = utils.get_learning_rate(global_step, hparams)
     with tf.variable_scope(tf.get_variable_scope(), reuse=False):
         opt = utils.get_optimizer(learning_rate, hparams)
-        update_op = opt.minimize(total_loss, var_list=[z_batch], global_step=global_step, name='update_op')
+        update_op = opt.minimize(total_loss, var_list=var_list, global_step=global_step, name='update_op')
+    opt_reinit_op = utils.get_opt_reinit_op(opt, var_list, global_step)
 
     # Intialize and restore model parameters
     init_op = tf.global_variables_initializer()
@@ -192,9 +194,8 @@ def dcgan_estimator(hparams):
         best_keeper = utils.BestKeeper(hparams)
         feed_dict = {A: A_val, y_batch: y_batch_val}
         for i in range(hparams.num_random_restarts):
-            sess.run([z_batch.initializer])
+            sess.run(opt_reinit_op)
             for j in range(hparams.max_update_iter):
-
                 if hparams.gif and ((j % hparams.gif_iter) == 0):
                     images = sess.run(x_hat_batch, feed_dict=feed_dict)
                     for im_num, image in enumerate(images):
