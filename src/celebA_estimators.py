@@ -147,8 +147,11 @@ def dcgan_estimator(hparams):
     prob, restore_dict_discrim, restore_path_discrim = celebA_model_def.dcgan_discrim(x_hat_batch, sess, hparams)
 
     # measure the estimate
-    measurement_is_sparse = (hparams.measurement_type in ['inpaint', 'superres', 'project'])
-    y_hat_batch = tf.matmul(x_hat_batch, A, b_is_sparse=measurement_is_sparse, name='y2_batch')
+    if hparams.measurement_type == 'project':
+        y_hat_batch = tf.identity(x_hat_batch, name='y2_batch')
+    else:
+        measurement_is_sparse = (hparams.measurement_type in ['inpaint', 'superres'])
+        y_hat_batch = tf.matmul(x_hat_batch, A, b_is_sparse=measurement_is_sparse, name='y2_batch')
 
     # define all losses
     m_loss1_batch =  tf.reduce_mean(tf.abs(y_batch - y_hat_batch), 1)
@@ -192,7 +195,12 @@ def dcgan_estimator(hparams):
     def estimator(A_val, y_batch_val, hparams):
         """Function that returns the estimated image"""
         best_keeper = utils.BestKeeper(hparams)
-        feed_dict = {A: A_val, y_batch: y_batch_val}
+
+        if hparams.measurement_type == 'project':
+            feed_dict = {y_batch: y_batch_val}
+        else:
+            feed_dict = {A: A_val, y_batch: y_batch_val}
+
         for i in range(hparams.num_random_restarts):
             sess.run(opt_reinit_op)
             for j in range(hparams.max_update_iter):

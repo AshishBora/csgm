@@ -54,7 +54,10 @@ def vae_estimator(hparams):
     z_batch, x_hat_batch, restore_path, restore_dict = mnist_model_def.vae_gen(hparams)
 
     # measure the estimate
-    y_hat_batch = tf.matmul(x_hat_batch, A, name='y_hat_batch')
+    if hparams.measurement_type == 'project':
+        y_hat_batch = tf.identity(x_hat_batch, name='y_hat_batch')
+    else:
+        y_hat_batch = tf.matmul(x_hat_batch, A, name='y_hat_batch')
 
     # define all losses
     m_loss1_batch = tf.reduce_mean(tf.abs(y_batch - y_hat_batch), 1)
@@ -89,7 +92,10 @@ def vae_estimator(hparams):
     def estimator(A_val, y_batch_val, hparams):
         """Function that returns the estimated image"""
         best_keeper = utils.BestKeeper(hparams)
-        feed_dict = {A: A_val, y_batch: y_batch_val}
+        if hparams.measurement_type == 'project':
+            feed_dict = {y_batch: y_batch_val}
+        else:
+            feed_dict = {A: A_val, y_batch: y_batch_val}
         for i in range(hparams.num_random_restarts):
             sess.run(opt_reinit_op)
             for j in range(hparams.max_update_iter):

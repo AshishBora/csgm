@@ -44,7 +44,10 @@ def main(hparams):
         # Construct noise and measurements
         A = utils.get_A(hparams)
         noise_batch = hparams.noise_std * np.random.randn(hparams.batch_size, hparams.num_measurements)
-        y_batch = np.matmul(x_batch, A) + noise_batch
+        if hparams.measurement_type == 'project':
+            y_batch = x_batch + noise_batch
+        else:
+            y_batch = np.matmul(x_batch, A) + noise_batch
 
         # Construct estimates using each estimator
         for model_type in hparams.model_types:

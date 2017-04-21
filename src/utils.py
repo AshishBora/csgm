@@ -42,7 +42,10 @@ def get_l2_loss(image1, image2):
 
 def get_measurement_loss(x_hat, A, y):
     """Get measurement loss of the estimated image"""
-    y_hat = np.matmul(x_hat, A)
+    if A is None:
+        y_hat = x_hat
+    else:
+        y_hat = np.matmul(x_hat, A)
     assert y_hat.shape == y.shape
     return np.mean((y - y_hat) ** 2)
 
@@ -421,15 +424,17 @@ def get_A(hparams):
     elif hparams.measurement_type == 'inpaint':
         A = get_A_inpaint(hparams)
     elif hparams.measurement_type == 'project':
-        hparams.inpaint_size = 0
-        A = get_A_inpaint(hparams)
+        A = None
     else:
         raise NotImplementedError
     return A
 
 
 def set_num_measurements(hparams):
-    hparams.num_measurements = get_A(hparams).shape[1]
+    if hparams.measurement_type == 'project':
+        hparams.num_measurements = hparams.n_input
+    else:
+        hparams.num_measurements = get_A(hparams).shape[1]
 
 
 def get_checkpoint_path(ckpt_dir):
