@@ -9,6 +9,8 @@ import utils
 
 BASE_SCRIPT = [
     "python -u ./src/compressed_sensing.py \\",
+    "    --pretrained-model-dir=./models/celebA_64_64/ \\",
+    "    \\",
     "    --dataset celebA \\",
     "    --input-type full-input \\",
     "    --num-input-images 64 \\",
