@@ -25,7 +25,7 @@ def dcgan_discrim(x_hat_batch, hparams):
     discrim_input = all_zeros + x_hat_image
 
     model_hparams = celebA_dcgan_model_def.Hparams()
-    prob, _  = celebA_dcgan_model_def.discriminator(model_hparams, discrim_input, train=False, reuse=False)
+    prob, _ = celebA_dcgan_model_def.discriminator(model_hparams, discrim_input, train=False, reuse=False)
     prob = tf.reshape(prob, [-1])
     prob = prob[:hparams.batch_size]
 
