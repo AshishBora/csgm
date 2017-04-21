@@ -1,40 +1,29 @@
 """Model definitions for MNIST"""
 # pylint: disable = C0301, C0103, R0914, C0111
 
+import os
+import sys
 import tensorflow as tf
+
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'mnist-vae', 'src'))
+import main as mnist_vae
+
 
 def vae_gen(num_images):
     """Definition of the generator"""
 
-    n_z = 20
-    n_hidden_gener_1 = 500
-    n_hidden_gener_2 = 500
-    n_input = 28 * 28
-    z = tf.Variable(tf.random_normal((num_images, n_z)), name='z')
-
-    with tf.variable_scope('generator'):
-        weights1 = tf.get_variable('w1', shape=[n_z, n_hidden_gener_1])
-        bias1 = tf.Variable(tf.zeros([n_hidden_gener_1], dtype=tf.float32), name='b1')
-        hidden1 = tf.nn.softplus(tf.matmul(z, weights1) + bias1, name='h1')
-
-        weights2 = tf.get_variable('w2', shape=[n_hidden_gener_1, n_hidden_gener_2])
-        bias2 = tf.Variable(tf.zeros([n_hidden_gener_2], dtype=tf.float32), name='b2')
-        hidden2 = tf.nn.softplus(tf.matmul(hidden1, weights2) + bias2, name='h2')
-
-        w_out = tf.get_variable('w_out', shape=[n_hidden_gener_2, n_input])
-        b_out = tf.Variable(tf.zeros([n_input], dtype=tf.float32), name='b_out')
-        x_hat = tf.nn.sigmoid(tf.matmul(hidden2, w_out) + b_out, name='x_hat')
-
-    restore_path = './models/mnist/model2.ckpt'
-    restore_dict = {'Variable_7': weights1,
-                    'Variable_8': weights2,
-                    'Variable_9': w_out,
-                    'Variable_11': bias1,
-                    'Variable_12': bias2,
-                    'Variable_13': b_out}
-
+    mnist_vae_hparams = mnist_vae.Hparams()
+    z = tf.Variable(tf.random_normal((num_images, mnist_vae_hparams.n_z)), name='z')
+    _, x_hat = mnist_vae.generator(mnist_vae_hparams, z, 'gen', reuse=False)
+    restore_path = tf.train.latest_checkpoint('./mnist-vae/models/mnist-vae/')
+    restore_vars = ['gen/w1',
+                    'gen/b1',
+                    'gen/w2',
+                    'gen/b2',
+                    'gen/w3',
+                    'gen/b3']
+    restore_dict = {var.op.name: var for var in tf.global_variables() if var.op.name in restore_vars}
     return z, x_hat, restore_path, restore_dict
-
 
 
 def end_to_end(hparams):
