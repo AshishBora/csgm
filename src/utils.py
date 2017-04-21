@@ -531,3 +531,12 @@ def solve_lasso(A_val, y_val, hparams):
         x_hat = np.asarray(x_hat_mat)
         x_hat = np.reshape(x_hat, [-1])
     return x_hat
+
+
+def get_opt_reinit_op(opt, var_list, global_step):
+    opt_slots = [opt.get_slot(var, name) for name in opt.get_slot_names() for var in var_list]
+    if isinstance(opt, tf.train.AdamOptimizer):
+        opt_slots.extend([opt._beta1_power, opt._beta2_power])  #pylint: disable = W0212
+    all_opt_variables = opt_slots + var_list + [global_step]
+    opt_reinit_op = tf.variables_initializer(all_opt_variables)
+    return opt_reinit_op
