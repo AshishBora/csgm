@@ -5,55 +5,24 @@ import os
 import sys
 import tensorflow as tf
 
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'mnist-vae', 'src'))
-import main as mnist_vae
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from mnist_vae.src import model_def as mnist_vae_model_def
+from mnist_e2e.model_def import end_to_end
 
 
-def vae_gen(hparams):
-    """Definition of the generator"""
+def construct_gen(hparams, model_def):
 
-    mnist_vae_hparams = mnist_vae.Hparams()
-    z = tf.Variable(tf.random_normal((hparams.batch_size, mnist_vae_hparams.n_z)), name='z')
-    _, x_hat = mnist_vae.generator(mnist_vae_hparams, z, 'gen', reuse=False)
-    restore_path = tf.train.latest_checkpoint(hparams.pretrained_model_dir)
-    restore_vars = ['gen/w1',
-                    'gen/b1',
-                    'gen/w2',
-                    'gen/b2',
-                    'gen/w3',
-                    'gen/b3']
+    model_hparams = model_def.Hparams()
+
+    z = model_def.get_z_var(model_hparams, hparams.batch_size)
+    _, x_hat = model_def.generator(model_hparams, z, 'gen', reuse=False)
+
+    restore_vars = model_def.gen_restore_vars()
     restore_dict = {var.op.name: var for var in tf.global_variables() if var.op.name in restore_vars}
+    restore_path = tf.train.latest_checkpoint(hparams.pretrained_model_dir)
+
     return z, x_hat, restore_path, restore_dict
 
 
-def end_to_end(hparams):
-    layer_sizes = [50, 200]
-
-    y_batch = tf.placeholder(tf.float32, shape=(hparams.batch_size, hparams.num_measurements), name='y_batch')
-
-    hidden = y_batch
-    prev_hidden_size = hparams.num_measurements
-    for i, hidden_size in enumerate(layer_sizes):
-        layer_name = 'hidden{0}'.format(i)
-        with tf.variable_scope(layer_name):
-            weights = tf.get_variable('weights', shape=[prev_hidden_size, hidden_size])
-            biases = tf.get_variable('biases', initializer=tf.zeros([hidden_size]))
-            hidden = tf.nn.relu(tf.matmul(hidden, weights) + biases, name=layer_name)
-        prev_hidden_size = hidden_size
-
-    with tf.variable_scope('sigmoid_logits'):
-        weights = tf.get_variable('weights', shape=[prev_hidden_size, 784])
-        biases = tf.get_variable('biases', initializer=tf.zeros([784]))
-        logits = tf.add(tf.matmul(hidden, weights), biases, name='logits')
-
-    x_hat_batch = tf.nn.sigmoid(logits)
-
-    restore_vars = ['hidden0/weights',
-                    'hidden0/biases',
-                    'hidden1/weights',
-                    'hidden1/biases',
-                    'sigmoid_logits/weights',
-                    'sigmoid_logits/biases']
-    restore_dict = {var.op.name: var for var in tf.global_variables() if var.op.name in restore_vars}
-
-    return y_batch, x_hat_batch, restore_dict
+def vae_gen(hparams):
+    return construct_gen(hparams, mnist_vae_model_def)

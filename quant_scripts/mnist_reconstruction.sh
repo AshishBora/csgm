@@ -1,6 +1,6 @@
 # BASE_SCRIPT   [
 #     "python -u ./src/compressed_sensing.py \\",
-#     "    --pretrained-model-dir=./mnist-vae/models/mnist-vae/ \\",
+#     "    --pretrained-model-dir=./mnist_vae/models/mnist-vae/ \\",
 #     "    \\",
 #     "    --dataset mnist \\",
 #     "    --input-type full-input \\",
