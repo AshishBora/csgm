@@ -141,10 +141,10 @@ def dcgan_estimator(hparams):
 
     # Create the generator
     z_batch = tf.Variable(tf.random_normal([hparams.batch_size, 100]), name='z_batch')
-    x_hat_batch, restore_dict_gen, restore_path_gen = celebA_model_def.dcgan_gen(z_batch, sess, hparams)
+    x_hat_batch, restore_dict_gen, restore_path_gen = celebA_model_def.dcgan_gen(z_batch, hparams)
 
     # Create the discriminator
-    prob, restore_dict_discrim, restore_path_discrim = celebA_model_def.dcgan_discrim(x_hat_batch, sess, hparams)
+    prob, restore_dict_discrim, restore_path_discrim = celebA_model_def.dcgan_discrim(x_hat_batch, hparams)
 
     # measure the estimate
     if hparams.measurement_type == 'project':

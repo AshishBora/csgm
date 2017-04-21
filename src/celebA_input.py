@@ -32,7 +32,7 @@ def sample_generator_images(hparams):
 
     # Create the generator
     z_batch = tf.Variable(tf.random_normal([hparams.batch_size, 100]))
-    x_hat_batch, restore_dict, restore_path = celebA_model_def.dcgan_gen(z_batch, sess, hparams)
+    x_hat_batch, restore_dict, restore_path = celebA_model_def.dcgan_gen(z_batch, hparams)
 
     # Intialize and restore model parameters
     init_op = tf.global_variables_initializer()
