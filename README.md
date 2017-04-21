@@ -43,22 +43,34 @@ $ unzip celebAtest.zip -d data/
 $ rm celebAtest.zip
 ```
 
-Download and extract pretrained models:
+Download pretrained models or train your own!
 
-```shell
-$ mkdir models
-$ mkdir optimization
-$ mkdir mnist-vae/models
+  - To download pretrained models do the following:
 
-$ wget https://www.cs.utexas.edu/~ashishb/csgm/csgm_pretrained.zip
-$ unzip csgm_pretrained.zip
-$ mv csgm_pretrained/celebA_64_64/ models/
-$ mv csgm_pretrained/mnist-e2e/ optimization/
-$ mv csgm_pretrained/mnist-vae/ mnist-vae/models/
+     ```shell
+     $ mkdir models
+     $ mkdir optimization
+     $ mkdir mnist-vae/models
 
-$ rm -r csgm_pretrained
-$ rm csgm_pretrained.zip 
-```
+     $ wget https://www.cs.utexas.edu/~ashishb/csgm/csgm_pretrained.zip
+     $ unzip csgm_pretrained.zip
+     $ mv csgm_pretrained/celebA_64_64/ models/
+     $ mv csgm_pretrained/mnist-e2e/ optimization/
+     $ mv csgm_pretrained/mnist-vae/ mnist-vae/models/
+
+     $ rm -r csgm_pretrained
+     $ rm csgm_pretrained.zip 
+     ```
+     
+  - To train your own VAE on MNIST:
+  
+     ```shell
+     $ cd mnist-vae
+     $ python ./src/main.py
+     ```
+     
+  - To train your own DCGAN on celebA, see https://github.com/carpedm20/DCGAN-tensorflow
+
 
 To use wavelet based estimators, you need to create the basis matrix:
 ```shell
