@@ -51,7 +51,7 @@ def vae_estimator(hparams):
 
     # Create the generator
     # TODO: Move z_batch definition here
-    z_batch, x_hat_batch, restore_path, restore_dict = mnist_model_def.vae_gen(hparams.batch_size)
+    z_batch, x_hat_batch, restore_path, restore_dict = mnist_model_def.vae_gen(hparams)
 
     # measure the estimate
     y_hat_batch = tf.matmul(x_hat_batch, A, name='y_hat_batch')

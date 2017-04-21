@@ -1,4 +1,6 @@
 python -u ./src/compressed_sensing.py \
+    --pretrained-model-dir=./models/celebA_64_64/ \
+    \
     --dataset celebA \
     --input-type gen-span \
     --num-input-images 1 \

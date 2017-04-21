@@ -70,7 +70,7 @@ def dcgan_discrim(x_hat_batch, sess, hparams):
                     'd_h3_lin/bias']
 
     restore_dict = {var.op.name: var for var in tf.global_variables() if var.op.name in restore_vars}
-    restore_path = tf.train.latest_checkpoint('./models/celebA_64_64/')
+    restore_path = tf.train.latest_checkpoint(hparams.pretrained_model_dir)
 
     prob = tf.reshape(prob, [-1])
     return prob[:hparams.batch_size], restore_dict, restore_path

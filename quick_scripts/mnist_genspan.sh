@@ -1,4 +1,6 @@
 python -u ./src/compressed_sensing.py \
+    --pretrained-model-dir=./mnist-vae/models/mnist-vae/ \
+    \
     --dataset mnist \
     --input-type gen-span \
     --num-input-images 10 \

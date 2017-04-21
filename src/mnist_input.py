@@ -1,5 +1,6 @@
 """Inputs for MNIST dataset"""
 
+import math
 import numpy as np
 import mnist_model_def
 import tensorflow as tf
@@ -16,11 +17,11 @@ def get_random_test_subset(mnist, sample_size):
     return images
 
 
-def sample_generator_images(sample_size):
+def sample_generator_images(hparams):
     """Sample random images from the generator"""
 
     # Create the generator
-    _, x_hat, restore_path, restore_dict = mnist_model_def.vae_gen(sample_size)
+    _, x_hat, restore_path, restore_dict = mnist_model_def.vae_gen(hparams)
 
     # Get a session
     sess = tf.Session()
@@ -31,8 +32,16 @@ def sample_generator_images(sample_size):
 
     restorer = tf.train.Saver(var_list=restore_dict)
     restorer.restore(sess, restore_path)
-    images = sess.run(x_hat)
-    images = {i: image for (i, image) in enumerate(images)}
+
+    images = {}
+    counter = 0
+    rounds = int(math.ceil(hparams.num_input_images/hparams.batch_size))
+    for _ in range(rounds):
+        images_mat = sess.run(x_hat)
+        for (_, image) in enumerate(images_mat):
+            if counter < hparams.num_input_images:
+                images[counter] = image
+                counter += 1
 
     # Reset TensorFlow graph
     sess.close()
@@ -51,7 +60,7 @@ def model_input(hparams):
     elif hparams.input_type == 'random-test':
         images = get_random_test_subset(mnist, hparams.num_input_images)
     elif hparams.input_type == 'gen-span':
-        images = sample_generator_images(hparams.num_input_images)
+        images = sample_generator_images(hparams)
     else:
         raise NotImplementedError
 

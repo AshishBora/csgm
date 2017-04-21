@@ -98,6 +98,9 @@ def main(hparams):
 if __name__ == '__main__':
     PARSER = ArgumentParser()
 
+    # Pretrained model
+    PARSER.add_argument('--pretrained-model-dir', type=str, default='./models/celebA_64_64/', help='Directory containing pretrained model')
+
     # Input
     PARSER.add_argument('--dataset', type=str, default='celebA', help='Dataset to use')
     PARSER.add_argument('--input-type', type=str, default='random_test', help='Where to take input from')

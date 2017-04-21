@@ -9,13 +9,13 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'mnist-vae', 'src'
 import main as mnist_vae
 
 
-def vae_gen(num_images):
+def vae_gen(hparams):
     """Definition of the generator"""
 
     mnist_vae_hparams = mnist_vae.Hparams()
-    z = tf.Variable(tf.random_normal((num_images, mnist_vae_hparams.n_z)), name='z')
+    z = tf.Variable(tf.random_normal((hparams.batch_size, mnist_vae_hparams.n_z)), name='z')
     _, x_hat = mnist_vae.generator(mnist_vae_hparams, z, 'gen', reuse=False)
-    restore_path = tf.train.latest_checkpoint('./mnist-vae/models/mnist-vae/')
+    restore_path = tf.train.latest_checkpoint(hparams.pretrained_model_dir)
     restore_vars = ['gen/w1',
                     'gen/b1',
                     'gen/w2',
