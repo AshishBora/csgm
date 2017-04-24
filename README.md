@@ -34,6 +34,14 @@ Pip installation can be done by ```$ pip install -r requirements.txt```
 ### Preliminaries
 ---
 
+Clone the repository and dependencies
+```shell
+$ git clone https://github.com/AshishBora/csgm.git
+$ cd csgm
+$ git submodule update --init --recursive
+```
+
+
 Download the datasets:
 ```shell
 $ python download.py mnist
@@ -50,13 +58,13 @@ Download pretrained models or train your own!
      ```shell
      $ mkdir models
      $ mkdir optimization
-     $ mkdir mnist-vae/models
+     $ mkdir mnist_vae/models
 
      $ wget https://www.cs.utexas.edu/~ashishb/csgm/csgm_pretrained.zip
      $ unzip csgm_pretrained.zip
      $ mv csgm_pretrained/celebA_64_64/ models/
      $ mv csgm_pretrained/mnist-e2e/ optimization/
-     $ mv csgm_pretrained/mnist-vae/ mnist-vae/models/
+     $ mv csgm_pretrained/mnist-vae/ mnist_vae/models/
 
      $ rm -r csgm_pretrained
      $ rm csgm_pretrained.zip 
@@ -65,8 +73,9 @@ Download pretrained models or train your own!
   - To train your own VAE on MNIST:
   
      ```shell
-     $ cd mnist-vae
+     $ cd mnist_vae
      $ python ./src/main.py
+     $ cd ..
      ```
      
   - To train your own DCGAN on celebA, see https://github.com/carpedm20/DCGAN-tensorflow
