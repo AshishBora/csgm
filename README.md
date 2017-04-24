@@ -44,38 +44,21 @@ $ git submodule update --init --recursive
 
 Download the datasets:
 ```shell
-$ python download.py mnist
-
-$ wget https://www.cs.utexas.edu/~ashishb/csgm/celebAtest.zip
-$ unzip celebAtest.zip -d data/
-$ rm celebAtest.zip
+$ ./setup/download_data.sh 
 ```
 
 Download pretrained models or train your own!
 
-  - To download pretrained models do the following:
+  - To download pretrained models:
 
      ```shell
-     $ mkdir models
-     $ mkdir optimization
-     $ mkdir mnist_vae/models
-
-     $ wget https://www.cs.utexas.edu/~ashishb/csgm/csgm_pretrained.zip
-     $ unzip csgm_pretrained.zip
-     $ mv csgm_pretrained/celebA_64_64/ models/
-     $ mv csgm_pretrained/mnist-e2e/ optimization/
-     $ mv csgm_pretrained/mnist-vae/ mnist_vae/models/
-
-     $ rm -r csgm_pretrained
-     $ rm csgm_pretrained.zip 
+     $ ./setup/download_models.sh
      ```
      
   - To train your own VAE on MNIST:
   
      ```shell
-     $ cd mnist_vae
-     $ python ./src/main.py
-     $ cd ..
+     $ ./setup/train_mnist_vae.sh
      ```
      
   - To train your own DCGAN on celebA, see https://github.com/carpedm20/DCGAN-tensorflow
