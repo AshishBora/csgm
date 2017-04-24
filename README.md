@@ -48,21 +48,10 @@ $ ./setup/download_data.sh
 ```
 
 Download pretrained models or train your own!
-
-  - To download pretrained models:
-
-     ```shell
-     $ ./setup/download_models.sh
-     ```
-     
-  - To train your own VAE on MNIST:
-  
-     ```shell
-     $ ./setup/train_mnist_vae.sh
-     ```
-     
-  - To train your own DCGAN on celebA, see https://github.com/carpedm20/DCGAN-tensorflow
-
+  - To download pretrained models: ```$ ./setup/download_models.sh```
+  - To train your own
+      - VAE on MNIST: ```$ ./setup/train_mnist_vae.sh```
+      - DCGAN on celebA, see https://github.com/carpedm20/DCGAN-tensorflow
 
 To use wavelet based estimators, you need to create the basis matrix:
 ```shell
