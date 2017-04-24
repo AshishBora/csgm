@@ -34,29 +34,29 @@ Pip installation can be done by ```$ pip install -r requirements.txt```
 ### Preliminaries
 ---
 
-Clone the repository and dependencies
-```shell
-$ git clone https://github.com/AshishBora/csgm.git
-$ cd csgm
-$ git submodule update --init --recursive
-```
+1. Clone the repository and dependencies
+    ```shell
+    $ git clone https://github.com/AshishBora/csgm.git
+    $ cd csgm
+    $ git submodule update --init --recursive
+    ```
 
 
-Download the datasets:
-```shell
-$ ./setup/download_data.sh 
-```
+2. Download the datasets:
+    ```shell
+    $ ./setup/download_data.sh 
+    ```
 
-Download pretrained models or train your own!
-  - To download pretrained models: ```$ ./setup/download_models.sh```
-  - To train your own
-      - VAE on MNIST: ```$ ./setup/train_mnist_vae.sh```
-      - DCGAN on celebA, see https://github.com/carpedm20/DCGAN-tensorflow
+3. Download pretrained models or train your own!
+    - To download pretrained models: ```$ ./setup/download_models.sh```
+    - To train your own
+        - VAE on MNIST: ```$ ./setup/train_mnist_vae.sh```
+        - DCGAN on celebA, see https://github.com/carpedm20/DCGAN-tensorflow
 
-To use wavelet based estimators, you need to create the basis matrix:
-```shell
-$ python ./src/wavelet_basis.py
-```
+4. To use wavelet based estimators, you need to create the basis matrix:
+    ```shell
+    $ python ./src/wavelet_basis.py
+    ```
 
 ### Demos
 ---
