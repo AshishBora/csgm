@@ -11,6 +11,7 @@ Reconstruction | Super-resolution | Inpainting
 
 
 Here we show the evolution of the reconstructed image for different number of iterations:
+
 ![](https://github.com/AshishBora/csgm/blob/master/example_results/celebA.gif)
 
 
