@@ -49,7 +49,8 @@ Pip installation can be done by ```$ pip install -r requirements.txt```
     ```
 
 3. Download pretrained models or train your own!
-    - To download pretrained models: ```$ ./setup/download_models.sh```
+    - To download pretrained models: Please download from [here](https://www.dropbox.com/s/3o2vi1w1wde0ids/bora-pretrained.zip?dl=0).
+    ```$ ./setup/download_models.sh```
     - To train your own
         - VAE on MNIST: ```$ ./setup/train_mnist_vae.sh```
         - DCGAN on celebA, see https://github.com/carpedm20/DCGAN-tensorflow
